@@ -27,7 +27,8 @@
 
   }
 
-  function handleRangeUpdate() {
+  function handleRangeUpdate(e) {
+    if (!mousedown) return;
     video[this.name] = this.value;
   }
 
@@ -49,10 +50,13 @@
 
   toggle.addEventListener('click', togglePlay);
   skipButtons.forEach(button => button.addEventListener('click', skip));
-  ranges.forEach(range => range.addEventListener('change', handleRangeUpdate));
-  ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
 
   let mousedown = false;
+  ranges.forEach(range => range.addEventListener('change', handleRangeUpdate));
+  ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
+  ranges.forEach(range => range.addEventListener('mousedown', () => mousedown = true));
+  ranges.forEach(range => range.addEventListener('mouseup', () => mousedown = false));
+
   progress.addEventListener('click', scrub);
   progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
   progress.addEventListener('mousedown', () => mousedown = true);
