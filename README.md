@@ -1,4 +1,4 @@
-# custom-video-player
+# HTML5 Video Player
 
 - Auto show/hide video controls
 - Volume and playback rate sliders
